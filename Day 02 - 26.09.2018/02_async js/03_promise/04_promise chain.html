@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        let num = 4;
+
+        let step1 = new Promise((x1, x2) => { (num == 4) ? x1("prom1 OK") : x2("prom1 NOT OK"); });
+        let step2 = step1.then((x) => { console.log(x); return "hello" });
+        let step3 = step2.then((y) => console.log("Chained promise: "+y));
+
+
+        /*
+        OUTPUT:
+        _______________________________
+        prom1 OK
+        Chained promise: hello
+        */
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+</head>
+
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        function elementTable(firstName,lastName){
+            return <h1>Hello, {firstName} {lastName}!</h1>;
+        }
+
+
+      // {} in jsx renders js code
+      ReactDOM.render(
+       <div>
+        {elementTable("Bob","Z.")}
+        {elementTable(" Alice","B.")}
+      </div>,
+        document.getElementById('root')
+      );
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        //create store
+        let store = {
+            state: { isLogedIn: false },
+            dispatch: function (action) {
+                let newState = reducer(this.state, action);
+                this.state = newState;
+            }
+        }
+
+        //create reducer
+        function reducer(currentState, action) {
+            switch (action.type) {
+                case "LOGIN": return {
+                    isLogedIn: true,
+                    username: action.payload.username,
+                    password: action.payload.password
+                };
+                case "LOGOUT": return {
+                    isLogedIn: false,
+                    username: "Guest"
+                };
+                default: return { ...currentState };
+            }
+        }
+
+        //dispatch - call the reducer
+        function login() {
+            let action = {
+                type: "LOGIN",
+                payload: { username: "Bob", password: "123" }
+            };
+            store.dispatch(action);
+        }
+
+        function logout() {
+            let action = {
+                type: "LOGOUT"
+            };
+            store.dispatch(action);
+        }
+
+
+    </script>
+</head>
+
+<body>
+    <button onclick="login()">login</button>
+    <button onclick="logout()">logout</button>
+    <button onclick="console.log(store.state)">show state in console</button>
+</body>
+
+</html>

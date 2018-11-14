@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="../build/react.js"></script>
+  <script src="../build/react-dom.js"></script>
+  <script src="../build/browser.min.js"></script>
+</head>
+
+<body>
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+
+
+     let element1="Bob and Alice";
+     let element2;
+
+      // {} in jsx renders js code
+      ReactDOM.render(
+       <div>
+        {
+          element1?
+          <h1>{element1}</h1>:
+          <p>element1 is undefined</p>
+        }
+
+        {
+          element2?
+          <h1>{element2}</h1>:
+          <p>element2 is undefined</p>
+        }
+      </div>,
+        document.getElementById('root')
+      );
+    </script>
+
+</body>
+
+</html>

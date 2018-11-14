@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        //create store
+        let store = {
+            state: {
+                userState: { isLogedIn: false },
+                cartState: { items: [] }
+            },
+            dispatch: function (action) {
+                let newUserState = reducerUser(this.state.userState, action);
+                let newCartState = reducerCart(this.state.cartState, action);
+                this.state = {
+                    userState: newUserState,
+                    cartState: newCartState
+                };
+            }
+        }
+
+        //create reducer
+        function reducerUser(currentState, action) {
+            switch (action.type) {
+                case "LOGIN": return {
+                    isLogedIn: true,
+                    username: action.payload.username,
+                    password: action.payload.password
+                };
+                case "LOGOUT": return {
+                    isLogedIn: false,
+                    username: "Guest"
+                };
+                default: return { ...currentState };
+            }
+        }
+
+
+        function reducerCart(currentState, action) {
+            switch (action.type) {
+                case "ADD": return {
+                    items: [...currentState.items].push(action.payload.item)
+                };
+                case "REMOVE": return {
+                    items: []
+                };
+                default: return { ...currentState };
+            }
+        }
+
+
+        //dispatch - call the reducer
+        function login() {
+            let action = {
+                type: "LOGIN",
+                payload: { username: "Bob", password: "123" }
+            };
+            store.dispatch(action);
+        }
+
+        function logout() {
+            let action = {
+                type: "LOGOUT"
+            };
+            store.dispatch(action);
+        }
+
+        function addCart() {
+            let action = {
+                type: "ADD",
+                payload: { item: "Computer" }
+            };
+            store.dispatch(action);
+        }
+
+        function removeCart() {
+            let action = {
+                type: "REMOVE"
+            };
+            store.dispatch(action);
+        }
+
+    </script>
+</head>
+
+<body>
+    <button onclick="login()">login</button>
+    <button onclick="logout()">logout</button>
+    <button onclick="addCart()">addCart</button>
+    <button onclick="removeCart()">removeCart</button>
+    <button onclick="console.log(store.state)">show state in console</button>
+</body>
+
+</html>

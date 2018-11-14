@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        let num = 4;
+
+        let step1 = new Promise((x1, x2) => { (num == 4) ? x1("prom1 OK") : x2("prom1 NOT OK"); });
+        let step2 = step1.then((x) => { console.log(x); throw new Error ("step2 error") });
+        let step3 = step2.catch((err) => console.log("Chained promise reject: "+err));
+
+
+        /*
+        OUTPUT:
+        _______________________________
+        prom1 OK
+        Chained promise reject: Error: step2 error
+        */
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

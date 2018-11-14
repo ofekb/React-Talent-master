@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        //loops 10**10 times - uses the current thread`s cpu for long time
+        function f1() {
+            document.getElementById("res").innerHTML += "<p>f1 START</p>";
+            for (let i = 0; i < 10 ** 10; i++);  
+            document.getElementById("res").innerHTML += "<p>f1 END</p>"
+        }
+
+        //waits 12 sec in web apis (does not use the current thread in this 12 sec)
+        function f2() {
+            document.getElementById("res").innerHTML += "<p>f2 START</p>";
+            setTimeout(() => { document.getElementById("res").innerHTML += "<p>f2 END</p>" }, 12000);     
+        }
+
+
+        //waits 12 sec in web apis (does not use the current thread in this 12 sec)
+        //and then loops 10**10 times - uses the current thread`s cpu for long time
+        function f3() {
+            document.getElementById("res").innerHTML += "<p>f3 START</p>";
+
+            setTimeout(() => {
+                for (let i = 0; i < 10 ** 10; i++);
+                document.getElementById("res").innerHTML += "<p>f3 END</p>"
+            }, 12000);
+        }
+
+    </script>
+</head>
+
+<body>
+    <label>test me:</label>
+    <input/>
+    <hr/>
+
+    <button onclick="f1()">click to exec f1</button>
+    <button onclick="f2()">click to exec f2</button>
+    <button onclick="f3()">click to exec f3</button>
+    <hr/>
+    <div id="res"></div>
+</body>
+
+</html>

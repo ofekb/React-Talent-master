@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        class Demo {
+
+            /**
+             * @param func - IS A FUNCTION THAT TAKES AS PARMETERS 2 OTHER FUNCTIONS, 
+             * AND DECIDES WHICH FUNCTION SHOULD BE EXECUTED
+             */
+            constructor(func) {
+                this.func = func;
+            }
+
+            /**
+             * @param f1 - A FUNCTION THAT IS USED AS THE FIRST PARAM OF `func`
+             */
+            then(f1) {
+                this.f1 = f1;
+                return this;
+            }
+
+            /**
+            * @param f2 - A FUNCTION THAT IS USED AS THE SECOND PARAM OF `func`
+            */
+            catch(f2) {
+                this.f2 = f2;
+                return this;
+            }
+
+            startPromise() {
+                this.func(this.f1, this.f2);
+            }
+        }
+
+
+        new Demo((x1, x2) => { (Date.now() % 2 == 0) ? x1() : x2() })
+            .then(() => { console.log("current ms is even") })
+            .catch(() => { console.log("current ms is odd") })
+            .startPromise();
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

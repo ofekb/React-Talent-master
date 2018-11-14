@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="../build/react.js"></script>
+  <script src="../build/react-dom.js"></script>
+  <script src="../build/browser.min.js"></script>
+</head>
+
+<body>
+
+  <div id="root">test</div>
+
+  <script>
+    /*
+    React.createElement takes 3 parameters:
+        1) tag name
+        2) attributes for this tag
+        3) tag content (can be more than one)
+    */
+    ReactDOM.render(React.createElement(
+      'div',
+      { title: "my title" },
+      React.createElement(
+        'h1',
+        null,
+        'Hello, world!'
+      ),
+      React.createElement(
+        'h1',
+        null,
+        'Hello, world!'
+      )
+    ), document.getElementById('root'));
+  </script>
+
+</body>
+
+</html>
